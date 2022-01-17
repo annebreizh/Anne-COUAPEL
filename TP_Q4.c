@@ -14,7 +14,9 @@ const char* welcome = "Bienvenue dans le Shell ENSEA\nPour quitter, tapez 'exit'
 const char* prompt ="enseash %";
 
 
+//definir les différentes sorties possibles : commande de retour et signal
 void checkStatus(int status){
+	
 	char *prompt_retour=malloc(PROMPTSIZE);
 	
 	//code de retour
@@ -33,10 +35,12 @@ void checkStatus(int status){
 	write(STDOUT_FILENO, prompt_retour, strlen(prompt_retour));
 }
 
+
 int main(void) {
 	
 	write ( STDOUT_FILENO , welcome, strlen(welcome) );
 	write ( STDOUT_FILENO , prompt, strlen(prompt) );
+	
 	while(1){
 		char* buf =malloc(BUF_SIZE);
 		int valeur =read (STDIN_FILENO, buf, BUF_SIZE);
@@ -52,11 +56,12 @@ int main(void) {
 			exit (-1) ;
 		}
 		
+		checkStatus(status);// sortie de la commande		
+		
 		if(strncmp(buf,"exit",strlen("exit")) == 0){//exit
 			break;
 			}
 			
-		checkStatus(status); 
 	}
 	
 	write(1,"Bye bye...\n",11);

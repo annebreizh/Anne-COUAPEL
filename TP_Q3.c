@@ -30,7 +30,7 @@ int main(void) {
 			exit (-1) ;
 		}
 		
-		if(strncmp(buf,"exit",strlen("exit")) == 0){//exit
+		if(strncmp(buf,"exit",strlen("exit")) == 0){//gestion de la sortie exit
 			break;
 			}
 
